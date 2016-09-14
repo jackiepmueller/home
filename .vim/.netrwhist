@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/media/sf_jmueller/synap_trunk/SynapMu/common/minion'
+let g:netrw_dirhist_2='/home/jmueller/synap_trunk/common/ipc'
+let g:netrw_dirhist_3='/home/jmueller/synap_trunk/common'
+let g:netrw_dirhist_4='/home/jmueller/synap_trunk'
+let g:netrw_dirhist_5='/home/jmueller/synap_trunk/common'
+let g:netrw_dirhist_6='/home/jmueller/synap_trunk/common/server'
+let g:netrw_dirhist_7='/home/jmueller/.ddd'

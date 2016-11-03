@@ -56,6 +56,8 @@ set autoindent smartindent      " smarter indent behavior
 set smarttab                    " make tab and backspace smarter
 set nowrap                      " don't wrap long lines
 set number                      " display line numbers
+set relativenumber              " display relative line numbers
+set hidden                      " allow switching buffers without saving
 set hlsearch                    " highlight search matches
 set backspace=indent,eol,start  " allow backspace over indent, eol, start
 set formatoptions=tcqlron       " auto-wrap lines/comments at textwidth,
@@ -137,5 +139,3 @@ else
   endif
 endif
 
-" Allow switching buffers
-set hidden

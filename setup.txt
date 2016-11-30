@@ -18,7 +18,7 @@ Build vim from source to get python support:
     --enable-luainterp \
     --enable-gui=gtk2 --enable-cscope --prefix=/usr
     
-    make VIMRUNTIMEDIR=/usr/share/vim/vim74
+    make VIMRUNTIMEDIR=/usr/share/vim/vim80
     sudo make install
 
     sudo update-alternatives --install /usr/bin/editor editor /usr/bin/vim 1

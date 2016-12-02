@@ -51,20 +51,21 @@ filetype plugin indent on              " enable filetypes and plugins
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 "" General
-set textwidth=78                " screen in 80 columns wide, wrap at 78
-set autoindent smartindent      " smarter indent behavior
-set smarttab                    " make tab and backspace smarter
-set nowrap                      " don't wrap long lines
-set number                      " display line numbers
-set relativenumber              " display relative line numbers
-set hidden                      " allow switching buffers without saving
-set hlsearch                    " highlight search matches
-set backspace=indent,eol,start  " allow backspace over indent, eol, start
-set formatoptions=tcqlron       " auto-wrap lines/comments at textwidth,
-                                " allow formatting using gq commands,
-                                " long lines not broken in insert mode
-                                " auto-insert comment leader on Enter or O,
-                                " recognize numbered lists
+set textwidth=78                           " screen in 80 columns wide, wrap at 78
+set autoindent smartindent                 " smarter indent behavior
+autocmd FileType make setlocal noexpandtab " Don't insert spaces for makefiles
+set smarttab                               " make tab and backspace smarter
+set nowrap                                 " don't wrap long lines
+set number                                 " display line numbers
+set relativenumber                         " display relative line numbers
+set hidden                                 " allow switching buffers without saving
+set hlsearch                               " highlight search matches
+set backspace=indent,eol,start             " allow backspace over indent, eol, start
+set formatoptions=tcqlron                  " auto-wrap lines/comments at textwidth,
+                                           " allow formatting using gq commands,
+                                           " long lines not broken in insert mode
+                                           " auto-insert comment leader on Enter or O,
+                                           " recognize numbered lists
 
 "" Syntax
 syntax on                       " enable syntax highlighting

@@ -99,6 +99,8 @@ nmap prb :!python setup.py install --prefix=~<cr>
 " one char and stay in normal mode'
 nnoremap s :exec "normal i".nr2char(getchar())."\e"<CR>
 nnoremap S :exec "normal a".nr2char(getchar())."\e"<CR>
+" YouCompleteMe GoTo
+nmap <F3> :YcmCompleter GoTo<CR>
 
 let $kernel_version=system('uname -r | tr -d "\n"')
 

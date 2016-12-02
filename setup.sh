@@ -10,9 +10,12 @@ cp .bashrc ~
 # Build vim from source to get python support:
 
 echo -e "${GREEN}Installing vim dependencies${NC}"
-sudo apt-get install python2.7-dev
-sudo apt-get install libncurses5-dev
-sudo apt-get install libreadline-dev
+sudo apt-get remove vim-tiny
+sudo apt-get remove vim-common
+sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev \
+    libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
+    libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
+    python3-dev ruby ruby-dev lua5.1 lua5.1-dev libperl-dev git
 
 echo -e "${GREEN}Cloning vim from github${NC}"
 cd ~
@@ -20,14 +23,21 @@ git clone https://github.com/vim/vim.git
 
 echo -e "${GREEN}Configuring vim build${NC}"
 cd vim
-./configure --with-features=huge \
+./configure \
+--with-features=huge \
 --enable-multibyte \
+--enable-luainterp \
+--enable-perlinterp \
 --enable-rubyinterp \
 --enable-pythoninterp \
 --with-python-config-dir=/usr/lib/python2.7/config-x86_65-linux-gnu \
---enable-perlinterp \
---enable-luainterp \
---enable-gui=gtk2 --enable-cscope --prefix=/usr
+--enable-gui=gtk2 \
+--enable-gtk2-check \
+--enable-cscope \
+--prefix=/usr \
+--with-x \
+--enable-fail-if-missing
+
 
 echo -e "${GREEN}Building vim${NC}"
 make VIMRUNTIMEDIR=/usr/share/vim/vim80

@@ -7,8 +7,13 @@ echo -e "${GREEN}Copying rc files to ~${NC}"
 cp .vimrc ~
 cp .bashrc ~
 
-# Build vim from source to get python support:
+# Install tools:
+echo -e "${GREEN}Installing tools${NC}"
+sudo apt-get install git
+sudo apt-get install ack-grep
+sudo apt-get install tmux
 
+# Build vim from source to get python support:
 echo -e "${GREEN}Installing vim dependencies${NC}"
 sudo apt-get remove vim-tiny
 sudo apt-get remove vim-common
@@ -52,18 +57,15 @@ sudo update-alternatives --install /usr/bin/vi vi /usr/bin/vim 1
 sudo update-alternatives --set vi /usr/bin/vim
 
 # Install Vundle:
-
 echo -e "${GREEN}Installing Vundle${NC}"
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # Setup Vundle:
-
 echo -e "${GREEN}Setting up Vundle${NC}"
 vim +PluginInstall +qall
 
 # Finish setting up youcomplete me:
 #    Download libclang 3.9:
-
 echo -e "${GREEN}Downloading libclang binaries from llvm.org${NC}"
 cd ~
 mkdir tmp
@@ -77,12 +79,10 @@ cd clang+llvm-3.9.0-x86_64-linux-gnu-debian8
 sudo cp -R * /usr/local
 
 #    Install cmake
-
 echo -e "${GREEN}Installing cmake${NC}"
 sudo apt-get install cmake
 
 #    Build the compiled portion:
-
 echo -e "${GREEN}Building compiled portion of YouCompleteMe${NC}"
 cd ~
 mkdir ycm_build

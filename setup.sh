@@ -31,11 +31,10 @@ cd vim
 ./configure \
 --with-features=huge \
 --enable-multibyte \
---enable-luainterp \
 --enable-perlinterp \
 --enable-rubyinterp \
 --enable-pythoninterp \
---with-python-config-dir=/usr/lib/python2.7/config-x86_65-linux-gnu \
+--with-python-config-dir=/usr/lib64/python/config \
 --enable-gui=gtk2 \
 --enable-gtk2-check \
 --enable-cscope \

@@ -8,6 +8,9 @@ case $- in
       *) return;;
 esac
 
+export TERM=screen-256color
+export DIFF=/usr/bin/vimdiff
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -91,6 +94,16 @@ fi
 #alias ll='ls -l'
 #alias la='ls -A'
 #alias l='ls -CF'
+alias cpptags='ctags --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++'
+alias rmswp='find . -name *.swp | xargs rm'
+
+# BATS aliases
+alias bsql='~/source/scripts/bsql.sh'
+alias cdl='cd /opt/ecn/users/jmueller/logs'
+alias gsm='~/source/system_tests/scripts/gsm_processes.py'
+alias bootstrap='~/db/code/bootstrap.py -dfq --skip-krbtgt'
+alias vim='vim --servername VIM'
+alias vir='vim --remote'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -100,8 +113,6 @@ fi
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
-
-#alias ls="ls -l"
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -114,10 +125,35 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export MAKEFLAGS='-j 10'
+# BATS Stuff
+#export MAKEFLAGS='-j 10'
 export EDITOR=vim
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-#export CPP_FLAGS="${CPP_FLAGS} -fdiagnostics-color=always"
+export PATH=/opt/icecream/bin:$PATH
+export ICECC_VERSION=$HOME/fc92277f51464111d9dd005a8fb857f0.tar.gz
+#export ICECC_CC=/opt/bats/bin/bats-gcc
+#export ICECC_CXX=/opt/bats/bin/bats-g++
+#export CC=bats-gcc
+#export CXX=bats-g++
+export ICECC_CC=/opt/bats/bin/clang
+export ICECC_CXX=/opt/bats/bin/clang++
+export CC=clang
+export CXX=clang++
+export ECN_COLORIZE=1
 
-alias fuck='sudo'
-alias e='vim'
+export NINJA_STATUS="[%f/%t %o/s] "
+
+export LC_ALL=C
+export LANG=C.UTF-8
+export LANGUAGE=C.UTF-8
+
+export ECN_ENVIRONMENT=jmueller_bzx
+
+# nosetests completion
+. ~/source/util/nosetests_complete
+
+# bsql completion
+if [ -f ~/source/util/bash_completions.sh ]; then
+        export BSQL_ENVIRONMENT_FILTER="^${USER}_|^[^_]+\$"
+        . ~/source/util/bash_completions.sh
+fi

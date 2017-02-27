@@ -19,6 +19,7 @@
 """" COMMON SETTINGS
 set nocompatible                " vim defaults, not vi
 filetype off                  " required
+set t_Co=256
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -43,6 +44,8 @@ Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Avoid a name conflict with L9
 Plugin 'user/L9', {'name': 'newL9'}
+" Switching between header and source files
+Plugin 'vim-scripts/a.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -51,7 +54,7 @@ filetype plugin indent on              " enable filetypes and plugins
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 "" General
-set textwidth=78                           " screen in 80 columns wide, wrap at 78
+"set textwidth=78                           " screen in 80 columns wide, wrap at 78
 set autoindent smartindent                 " smarter indent behavior
 autocmd FileType make setlocal noexpandtab " Don't insert spaces for makefiles
 set smarttab                               " make tab and backspace smarter
@@ -66,6 +69,7 @@ set formatoptions=tcqlron                  " auto-wrap lines/comments at textwid
                                            " long lines not broken in insert mode
                                            " auto-insert comment leader on Enter or O,
                                            " recognize numbered lists
+set directory=~/.vim/swapfiles//
 
 "" Syntax
 syntax on                       " enable syntax highlighting
@@ -125,20 +129,16 @@ set softtabstop=4  " backspace amount when tab-aligned (like using tabs)
 "au Syntax c,cpp syn keyword cType u_int64_t u_int32_t u_int16_t u_int8_t
 "au Syntax c,cpp syn keyword cOperator likely unlikely
 
-colorscheme evening  " the color scheme
+"" Statusline
+set laststatus=2 " Always show status line
+set statusline=
+set statusline +=%1*\ %n\ %*            "buffer number
+set statusline +=%4*\ %<%f%*            "full path
+set statusline +=%2*%m%*                "modified flag
+set statusline +=%1*%=%5l%*             "current line
+set statusline +=%2*/%L%*               "total lines
+set statusline +=%1*%4v\ %*             "virtual column number
 
-" Maximize window on startup
-if has("gui_running")
-  " GUI is running or is about to start.
-  " Maximize gvim window (for an alternative on Windows, see simalt below).
-  set lines=999 columns=999
-else
-  " This is console Vim.
-  if exists("+lines")
-    set lines=50
-  endif
-  if exists("+columns")
-    set columns=100
-  endif
-endif
+colorscheme mevening  " the color scheme
 
+"let g:loaded_youcompleteme = 1  "Disable youcompleteme

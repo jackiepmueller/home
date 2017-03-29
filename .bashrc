@@ -96,6 +96,7 @@ fi
 #alias l='ls -CF'
 alias cpptags='ctags --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++'
 alias rmswp='find . -name *.swp | xargs rm'
+alias pyclean='find . -name *.pyc | xargs rm -v'
 
 # BATS aliases
 alias bsql='~/source/scripts/bsql.sh'
@@ -126,7 +127,6 @@ if ! shopt -oq posix; then
 fi
 
 # BATS Stuff
-#export MAKEFLAGS='-j 10'
 export EDITOR=vim
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export PATH=/opt/icecream/bin:$PATH
@@ -147,7 +147,7 @@ export LC_ALL=C
 export LANG=C.UTF-8
 export LANGUAGE=C.UTF-8
 
-export ECN_ENVIRONMENT=jmueller_bzx
+export ECN_ENVIRONMENT=jmueller_byx
 
 # nosetests completion
 . ~/source/util/nosetests_complete

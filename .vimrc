@@ -38,14 +38,11 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'L9'
 Plugin 'Valloric/YouCompleteMe'
 " Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-Plugin 'user/L9', {'name': 'newL9'}
+"Plugin 'git://git.wincent.com/command-t.git'
 " Switching between header and source files
 Plugin 'vim-scripts/a.vim'
+" Better buffer management
+Plugin 'jeetsukumaran/vim-buffergator'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -142,3 +139,10 @@ set statusline +=%1*%4v\ %*             "virtual column number
 colorscheme mevening  " the color scheme
 
 "let g:loaded_youcompleteme = 1  "Disable youcompleteme
+
+"" Functions
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    %s/\s\+$//e
+    call winrestview(l:save)
+endfun

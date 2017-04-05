@@ -102,6 +102,8 @@ nnoremap s :exec "normal i".nr2char(getchar())."\e"<CR>
 nnoremap S :exec "normal a".nr2char(getchar())."\e"<CR>
 " YouCompleteMe GoTo
 nmap <F3> :YcmCompleter GoTo<CR>
+" YouCompleteMe FixIt
+map <F9> :YcmCompleter FixIt<CR>
 
 let $kernel_version=system('uname -r | tr -d "\n"')
 
@@ -141,8 +143,16 @@ colorscheme mevening  " the color scheme
 "let g:loaded_youcompleteme = 1  "Disable youcompleteme
 
 "" Functions
+" Trim trailing whitespace from all lines
 fun! TrimWhitespace()
     let l:save = winsaveview()
     %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+" Fix spacing around assignemts, a=b -> a = b
+fun! SpaceAssign()
+    let l:save = winsaveview()
+    %s/\([a-zA-Z0-9_]\)=\([a-zA-Z0-9_]\)/\1\ =\ \2/g
     call winrestview(l:save)
 endfun

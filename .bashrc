@@ -79,32 +79,18 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    #alias grep='grep --color=auto'
-    #alias fgrep='fgrep --color=auto'
-    #alias egrep='egrep --color=auto'
 fi
 
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-#alias ll='ls -l'
-#alias la='ls -A'
-#alias l='ls -CF'
 alias cpptags='ctags --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++'
 alias rmswp='find . -name *.swp | xargs rm'
 alias pyclean='find . -name *.pyc | xargs rm -v'
-
-# BATS aliases
-alias bsql='~/source/scripts/bsql.sh'
-alias cdl='cd /opt/ecn/users/jmueller/logs'
-alias gsm='~/source/system_tests/scripts/gsm_processes.py'
-alias bootstrap='~/db/code/bootstrap.py -dfq --skip-krbtgt'
-alias vim='vim --servername VIM'
+alias vis='vim --servername VIM'
 alias vir='vim --remote'
+alias gdd='git difftool -d'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -126,34 +112,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# BATS Stuff
 export EDITOR=vim
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-export PATH=/opt/icecream/bin:$PATH
-export ICECC_VERSION=$HOME/fc92277f51464111d9dd005a8fb857f0.tar.gz
-#export ICECC_CC=/opt/bats/bin/bats-gcc
-#export ICECC_CXX=/opt/bats/bin/bats-g++
-#export CC=bats-gcc
-#export CXX=bats-g++
-export ICECC_CC=/opt/bats/bin/clang
-export ICECC_CXX=/opt/bats/bin/clang++
-export CC=clang
-export CXX=clang++
-export ECN_COLORIZE=1
 
-export NINJA_STATUS="[%f/%t %o/s] "
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-export LC_ALL=C
-export LANG=C.UTF-8
-export LANGUAGE=C.UTF-8
-
-export ECN_ENVIRONMENT=jmueller_byx
-
-# nosetests completion
-. ~/source/util/nosetests_complete
-
-# bsql completion
-if [ -f ~/source/util/bash_completions.sh ]; then
-        export BSQL_ENVIRONMENT_FILTER="^${USER}_|^[^_]+\$"
-        . ~/source/util/bash_completions.sh
+if [ -f ~/.bats.bashrc ]; then
+    . ~/.bats.bashrc
 fi
+

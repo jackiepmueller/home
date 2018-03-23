@@ -79,9 +79,9 @@ map <F9> :YcmCompleter FixIt<CR>
 inoremap jj <Esc>
 
 " fzf mappings
-map <leader>f :rg<space>
 map <C-p> :Files<CR>
 map <C-l> :Buffer<CR>
+map <C-s> :Rg<space>
 map <leader>t :GFiles<CR>
 map <leader>h :Commands<CR>
 map <leader>? :Helptags<CR>
@@ -89,6 +89,9 @@ map <leader>gs :GFiles?<CR>
 map <leader>gl :Commits<CR>
 map <leader>gbl :BCommits<CR>
 imap <C-x><C-l> <plug>(fzf-complete-line)
+
+" Close split
+nmap <C-u> :close<CR>
 
 let $kernel_version=system('uname -r | tr -d "\n"')
 
@@ -144,20 +147,31 @@ fun! SpaceAssign()
     call winrestview(l:save)
 endfun
 
+"" Enable syntax highlighting for ext
+fun! SyntaxOn(ext, type)
+    execute "au BufNewFile,BufRead *." . a:ext . " set filetype=" . a:type
+endfun
+
 """" Plugin specific configs """"
 let g:fzf_layout = { 'down': '~30%'}
 "let g:fzf_commits_log_options = '--graph --color=always --all --pretty=tformat:"%C(auto)%h%d %s %C(green)(%ar)%Creset %C(blue)<%an>%Creset"'
 "let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hiden --folow --glob "!.git/*"'
 
-augroup localvimrc_group
-    autocmd!
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
 
-    au VimEnter * command! -bang -nargs=* Rg
-                \ call fzf#vim#grep(
-                \ 'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-                \     <bang>0 ? fzf#vim#with_preview('up:60%')
-                \             : fzf#vim#with_preview('right:50%:hidden', '?'),
-                \     <bang>0)
-augroup END
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
-map <leader>s :Rg<space>
+"" Use sql syntax highlighting for *.sqli files
+call SyntaxOn('sqli', 'sql')
+
+"" Make arrows do something useful
+nnoremap <Up>    :resize +5<CR>
+nnoremap <Down>  :resize -5<CR>
+nnoremap <Left>  :vertical resize -5<CR>
+nnoremap <Right> :vertical resize +5<CR>

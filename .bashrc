@@ -43,6 +43,9 @@ case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
 
+# Disable ctrl-s and ctrl-q
+stty -ixon
+
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
@@ -75,7 +78,6 @@ xterm*|rxvt*)
     ;;
 esac
 
-# enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
@@ -84,13 +86,16 @@ fi
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
+# some more aliases
 alias cpptags='ctags --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++'
 alias rmswp='find . -name *.swp | xargs rm'
 alias pyclean='find . -name *.pyc | xargs rm -v'
 alias vis='vim --servername VIM'
 alias vir='vim --remote'
 alias gdd='git difftool -d'
+alias gs='git status'
+alias gl='git log'
+alias cl='~/scripts/cl.sh'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -113,11 +118,16 @@ if ! shopt -oq posix; then
 fi
 
 export EDITOR=vim
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# Shows who committed the most in the past 2 years
+function whoowns {                                                                                                                                                                                                                                                               
+    git log --pretty=format:"%an" --after="2 years" ${@} | sort | uniq -c | sort -r                                                                                                                                                                                              
+}
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-if [ -f ~/.bats.bashrc ]; then
-    . ~/.bats.bashrc
+# Keep work related stuff in a separate rc file
+if [ -f ~/.work.bashrc ]; then
+    . ~/.work.bashrc
 fi
-

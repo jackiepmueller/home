@@ -131,3 +131,15 @@ function whoowns {
 if [ -f ~/.work.bashrc ]; then
     . ~/.work.bashrc
 fi
+
+# Make it easy to append your own customizations that override the above by
+# loading all files from .bashrc.d directory
+mkdir -p ~/.bashrc.d
+if [ -n "$(ls ~/.bashrc.d)" ]; then
+  for dotfile in ~/.bashrc.d/*
+  do
+    if [ -r "${dotfile}" ]; then
+      source "${dotfile}"
+    fi
+  done
+fi

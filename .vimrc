@@ -1,6 +1,6 @@
 """" COMMON SETTINGS """"
 set nocompatible                " vim defaults, not vi
-set t_Co=256
+"set t_Co=256
 
 """" VIM-PLUG """"
 let s:plugin_dir='~/.vim/plugged'
@@ -46,6 +46,9 @@ set formatoptions=tcqlron                  " auto-wrap lines/comments at textwid
                                            " recognize numbered lists
 set directory=~/.vim/swapfiles//
 
+"set incsearch       " incremental search highlight
+set scrolloff=3     " show more context around cursor
+
 """" Syntax """"
 syntax on                       " enable syntax highlighting
 set foldmethod=syntax           " syntax-based code folding
@@ -72,8 +75,6 @@ nmap tf :set foldenable!<cr>
 nmap tw :set wrap!<cr>
 " toggle numbering
 nmap tn :set number!<cr>
-" rebuild python
-nmap prb :!python setup.py install --prefix=~<cr>
 " default s seems eclipsed by c functionality. instead mapping s to 'insert
 " one char and stay in normal mode'
 nnoremap s :exec "normal i".nr2char(getchar())."\e"<CR>

@@ -1,4 +1,15 @@
 #!/bin/bash
+
+check_dep() {
+    if ! [ -x "$(command -v $1)" ]; then
+        echo "Error $1 is not installed." >&2
+        exit 1
+    fi
+}
+
+check_dep curl
+check_dep git
+
 ln -s ~/home/.bashrc    ~
 ln -s ~/home/.tmux.conf ~
 ln -s ~/home/.vimrc     ~

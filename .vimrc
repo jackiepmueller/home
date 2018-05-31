@@ -15,7 +15,7 @@ let s:plug_file='~/.vim/autoload/plug.vim'
 
 call plug#begin(s:plugin_dir)
 Plug 'tpope/vim-fugitive'
-Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --system-clang' }
 Plug 'vim-scripts/a.vim'
@@ -186,3 +186,5 @@ nnoremap <Up>    :resize +5<CR>
 nnoremap <Down>  :resize -5<CR>
 nnoremap <Left>  :vertical resize -5<CR>
 nnoremap <Right> :vertical resize +5<CR>
+
+autocmd VimEnter * CSApprox

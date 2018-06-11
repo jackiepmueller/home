@@ -8,7 +8,7 @@ case $- in
       *) return;;
 esac
 
-#export TERM=screen-256color
+export TERM=screen-256color
 export DIFF=/usr/bin/vimdiff
 
 # don't put duplicate lines or lines starting with space in the history.

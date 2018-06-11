@@ -17,7 +17,7 @@ call plug#begin(s:plugin_dir)
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --system-clang' }
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --system-clang' }
 Plug 'vim-scripts/a.vim'
 Plug 'airblade/vim-gitgutter'
 call plug#end()

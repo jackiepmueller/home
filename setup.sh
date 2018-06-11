@@ -15,5 +15,16 @@ ln -s ~/home/.tmux.conf ~
 ln -s ~/home/.vimrc     ~
 ln -s ~/home/.vim       ~
 
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+if [ ! -d ~/.vim/swapfiles ]; then
+    mkdir ~/home/.vim/swapfiles
+fi
+
+# Vim Plug
+if [ ! -f ~/.vim/autoload/plug.vim ]; then
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+
+# TPM
+if [ ! -d ~/.tmux/plugins/tpm ]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi

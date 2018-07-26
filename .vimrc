@@ -17,7 +17,7 @@ call plug#begin(s:plugin_dir)
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --system-clang' }
 Plug 'vim-scripts/a.vim'
 Plug 'airblade/vim-gitgutter'
 call plug#end()
@@ -166,7 +166,7 @@ endfun
 """" Plugin specific configs """"
 let g:fzf_layout = { 'down': '~30%'}
 "let g:fzf_commits_log_options = '--graph --color=always --all --pretty=tformat:"%C(auto)%h%d %s %C(green)(%ar)%Creset %C(blue)<%an>%Creset"'
-"let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore --hiden --folow --glob "!.git/*"'
+let $FZF_DEFAULT_COMMAND = "rg --files --hidden --follow --glob '!.git/*'"
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(

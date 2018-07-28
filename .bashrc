@@ -2,6 +2,9 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# Add keyboard remappings for chromebook
+[ "$HOSTNAME" = "gal" ] && xkbcomp -I$HOME/.xkb ~/.xkb/keymap/mykbd $DISPLAY > /dev/null 2>&1
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -79,13 +82,9 @@ function whoowns {
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Keep work related stuff in a separate rc file
-#if [ -f ~/.work.bashrc ]; then
-#    . ~/.work.bashrc
-#fi
 [ -f ~/.work.bashrc ] && source ~/.work.bashrc
 
-# Make it easy to append your own customizations that override the above by
-# loading all files from .bashrc.d directory
+# Load any extensions in ~/.bashrc.d
 mkdir -p ~/.bashrc.d
 if [ -n "$(ls ~/.bashrc.d)" ]; then
   for dotfile in ~/.bashrc.d/*

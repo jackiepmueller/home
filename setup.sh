@@ -10,14 +10,22 @@ check_dep() {
 check_dep curl
 check_dep git
 
+# Basics
 ln -s ~/home/.bashrc    ~
 ln -s ~/home/.tmux.conf ~
 ln -s ~/home/.vimrc     ~
 ln -s ~/home/.vim       ~
 
-if [ ! -d ~/.vim/swapfiles ]; then
-    mkdir ~/home/.vim/swapfiles
-fi
+# Add keyboard remappings for chromebook
+[ "$HOSTNAME" = "gal" ] && ln -s ~/home/.xkb ~
+
+mkdir -p ~/.bashrc.d
+
+# Debian/Ubuntu specific stuff
+[ -f "/etc/debian_version" ] && ln -s ~/home/deb.bash ~/.bashrc.d/deb.bash
+
+# Create swap files dir
+[ ! -d ~/.vim/swapfiles ] && mkdir ~/home/.vim/swapfiles
 
 # Vim Plug
 if [ ! -f ~/.vim/autoload/plug.vim ]; then
@@ -25,6 +33,4 @@ if [ ! -f ~/.vim/autoload/plug.vim ]; then
 fi
 
 # TPM
-if [ ! -d ~/.tmux/plugins/tpm ]; then
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
+[ ! -d ~/.tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm

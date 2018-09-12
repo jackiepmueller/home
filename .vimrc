@@ -35,7 +35,7 @@ autocmd FileType make setlocal noexpandtab " Don't insert spaces for makefiles
 set smarttab                               " make tab and backspace smarter
 set nowrap                                 " don't wrap long lines
 set number                                 " display line numbers
-set norelativenumber                         " display relative line numbers
+set norelativenumber                       " display relative line numbers
 set hidden                                 " allow switching buffers without saving
 set hlsearch                               " highlight search matches
 set backspace=indent,eol,start             " allow backspace over indent, eol, start
@@ -48,10 +48,11 @@ set directory=~/.vim/swapfiles//
 
 "set incsearch       " incremental search highlight
 set scrolloff=3     " show more context around cursor
+"set cursorline      " highlight cursor line number
 
 """" Syntax """"
 syntax on                       " enable syntax highlighting
-set foldmethod=syntax           " syntax-based code folding
+"set foldmethod=syntax           " syntax-based code folding, this was the cause of insane input lag
 set nofoldenable                " disable folding (enable in USERS section)
 set cinoptions=:0,l1,t0,g0      " case labels at column 0,
                                 " align line after case label with label,
@@ -88,6 +89,7 @@ nmap <F5> :YcmForceCompileAndDiagnostics<CR>
 map <F9> :YcmCompleter FixIt<CR>
 " Rebind jj to escape in insert mode
 inoremap jj <Esc>
+inoremap jk <Esc>
 
 " fzf mappings
 map <C-p> :Files<CR>
@@ -127,21 +129,25 @@ set softtabstop=4  " backspace amount when tab-aligned (like using tabs)
 "au Syntax c,cpp syn keyword cOperator likely unlikely
 
 """" Statusline """"
-set laststatus=2 " Always show status line
+set laststatus=2                " Always show status line
 set statusline=
-set statusline +=%1*\ %n\ %*            "buffer number
-set statusline +=%4*\ %<%f%*            "full path
-set statusline +=%2*%m%*                "modified flag
-set statusline +=%1*%=%5l%*             "current line
-set statusline +=%2*/%L%*               "total lines
-set statusline +=%1*%4v\ %*             "virtual column number
+set statusline +=%1*\ %n\ %*    "buffer number
+set statusline +=%4*\ %<%f%*    "full path
+set statusline +=%2*%m%*        "modified flag
+set statusline +=%1*%=%5l%*     "current line
+set statusline +=%2*/%L%*       "total lines
+set statusline +=%1*%4v\ %*     "virtual column number
+"set statusline +=%1*\ %f%*
+"set statusline +=\ %l
+"set statusline +=\ %L
+"set statusline +=\ %n
 
 colorscheme mevening  " the color scheme
 
 "" Limit matchparens timeout
 "let g:matchparen_timeout = 5
 "let g:matchparen_insert_timeout = 1
-let loaded_matchparen = 1
+let g:loaded_matchparen = 0
 
 """" Functions """"
 "" Trim trailing whitespace from all lines

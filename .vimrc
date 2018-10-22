@@ -17,7 +17,7 @@ call plug#begin(s:plugin_dir)
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --system-clang' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 Plug 'vim-scripts/a.vim'
 Plug 'airblade/vim-gitgutter'
 call plug#end()
@@ -78,8 +78,8 @@ nmap tw :set wrap!<cr>
 nmap tn :set number!<cr>
 " default s seems eclipsed by c functionality. instead mapping s to 'insert
 " one char and stay in normal mode'
-nnoremap s :exec "normal i".nr2char(getchar())."\e"<CR>
-nnoremap S :exec "normal a".nr2char(getchar())."\e"<CR>
+"nnoremap s :exec "normal i".nr2char(getchar())."\e"<CR>
+"nnoremap S :exec "normal a".nr2char(getchar())."\e"<CR>
 " YouCompleteMe GoTo
 nmap <F2> :YcmCompleter GoToImprecise<CR>
 nmap <F3> :YcmCompleter GoTo<CR>
@@ -87,8 +87,7 @@ nmap <F4> :YcmCompleter GoToDefinition<CR>
 nmap <F5> :YcmForceCompileAndDiagnostics<CR>
 " YouCompleteMe FixIt
 map <F9> :YcmCompleter FixIt<CR>
-" Rebind jj to escape in insert mode
-inoremap jj <Esc>
+" Rebind jk to escape in insert mode
 inoremap jk <Esc>
 
 " fzf mappings
@@ -172,11 +171,13 @@ endfun
 """" Plugin specific configs """"
 let g:fzf_layout = { 'down': '~30%'}
 "let g:fzf_commits_log_options = '--graph --color=always --all --pretty=tformat:"%C(auto)%h%d %s %C(green)(%ar)%Creset %C(blue)<%an>%Creset"'
-let $FZF_DEFAULT_COMMAND = "rg --files --hidden --follow --glob '!.git/*'"
+
+"" This controls :Files not :Rg
+let $FZF_DEFAULT_COMMAND = "rg --files --hidden --follow -g'!.git/*'"
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   'rg --column --line-number --no-heading -g''!libecnmeng_cfe/*'' --color=always '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
@@ -188,9 +189,9 @@ command! -bang -nargs=? -complete=dir Files
 call SyntaxOn('sqli', 'sql')
 
 "" Make arrows do something useful
-nnoremap <Up>    :resize +5<CR>
-nnoremap <Down>  :resize -5<CR>
-nnoremap <Left>  :vertical resize -5<CR>
-nnoremap <Right> :vertical resize +5<CR>
+"nnoremap <Up>    :resize +5<CR>
+"nnoremap <Down>  :resize -5<CR>
+"nnoremap <Left>  :vertical resize -5<CR>
+"nnoremap <Right> :vertical resize +5<CR>
 
 autocmd VimEnter * CSApprox

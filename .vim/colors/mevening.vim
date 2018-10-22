@@ -45,6 +45,7 @@ hi clear CursorLine
 hi Constant     guifg=#ffa0a0
 hi Special      guifg=Orange
 hi Statement    guifg=#ffff60 gui=bold
+hi Type         guifg=#60ff60 gui=bold
 hi Ignore       guifg=grey20
 
 " Colors used in status line

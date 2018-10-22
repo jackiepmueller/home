@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# vim configuration line:
+# ./configure --with-features=huge --enable-python3interp=yes --enable-pythoninterp=yes --with-python3-config-dir=<the right place> --enable-fail-if-missing
+
 check_dep() {
     if ! [ -x "$(command -v $1)" ]; then
         echo "Error $1 is not installed." >&2

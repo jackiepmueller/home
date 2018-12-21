@@ -177,7 +177,14 @@ let $FZF_DEFAULT_COMMAND = "rg --files --hidden --follow -g'!.git/*'"
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading -g''!libecnmeng_cfe/*'' --color=always '.shellescape(<q-args>), 1,
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+command! -bang -nargs=* Rgi
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number -i --no-heading --color=always '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)

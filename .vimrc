@@ -68,42 +68,39 @@ nmap <space> <c-f>
 nmap <bs> <c-b>
 " cycle between split windows
 nmap - <c-w>w
-" toggle search highlighting
-nmap th :set hlsearch!<cr>
-" toggle code folding
-nmap tf :set foldenable!<cr>
 " toggle line wrapping
-nmap tw :set wrap!<cr>
+nmap <silent> tw :set wrap!<cr>
 " toggle numbering
-nmap tn :set number!<cr>
+nmap <silent> tn :set number!<cr>
 " default s seems eclipsed by c functionality. instead mapping s to 'insert
 " one char and stay in normal mode'
-"nnoremap s :exec "normal i".nr2char(getchar())."\e"<CR>
-"nnoremap S :exec "normal a".nr2char(getchar())."\e"<CR>
+"nnoremap s :exec "normal i".nr2char(getchar())."\e"<cr>
+"nnoremap S :exec "normal a".nr2char(getchar())."\e"<cr>
 " YouCompleteMe GoTo
-nmap <F2> :YcmCompleter GoToImprecise<CR>
-nmap <F3> :YcmCompleter GoTo<CR>
-nmap <F4> :YcmCompleter GoToDefinition<CR>
-nmap <F5> :YcmForceCompileAndDiagnostics<CR>
+nmap <F2> :YcmCompleter GoToImprecise<cr>
+nmap <F3> :YcmCompleter GoTo<cr>
+nmap <F4> :YcmCompleter GoToDefinition<cr>
+nmap <F5> :YcmForceCompileAndDiagnostics<cr>
 " YouCompleteMe FixIt
-map <F9> :YcmCompleter FixIt<CR>
+map <F9> :YcmCompleter FixIt<cr>
 " Rebind jk to escape in insert mode
-inoremap jk <Esc>
+inoremap jk <esc>
 
 " fzf mappings
-map <C-p> :Files<CR>
-map <C-l> :Buffer<CR>
-map <C-s> :Rg<space>
-map <leader>t :GFiles<CR>
-map <leader>h :Commands<CR>
-map <leader>? :Helptags<CR>
-map <leader>gs :GFiles?<CR>
-map <leader>gl :Commits<CR>
-map <leader>gbl :BCommits<CR>
-imap <C-x><C-l> <plug>(fzf-complete-line)
+map <c-p> :Files<cr>
+map <c-l> :Buffer<cr>
+map <c-s> :Rg<space>
+nnoremap <c-n> :Rg<space><c-r><c-w><cr>
+map <leader>t :GFiles<cr>
+map <leader>h :Commands<cr>
+map <leader>? :Helptags<cr>
+map <leader>gs :GFiles?<cr>
+map <leader>gl :Commits<cr>
+map <leader>gbl :BCommits<cr>
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " Close split
-nmap <C-u> :close<CR>
+nmap <c-u> :close<cr>
 
 let $kernel_version=system('uname -r | tr -d "\n"')
 
@@ -196,9 +193,9 @@ command! -bang -nargs=? -complete=dir Files
 call SyntaxOn('sqli', 'sql')
 
 "" Make arrows do something useful
-"nnoremap <Up>    :resize +5<CR>
-"nnoremap <Down>  :resize -5<CR>
-"nnoremap <Left>  :vertical resize -5<CR>
-"nnoremap <Right> :vertical resize +5<CR>
+"nnoremap <Up>    :resize +5<cr>
+"nnoremap <Down>  :resize -5<cr>
+"nnoremap <Left>  :vertical resize -5<cr>
+"nnoremap <Right> :vertical resize +5<cr>
 
 autocmd VimEnter * CSApprox

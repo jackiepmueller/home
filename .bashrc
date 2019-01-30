@@ -2,14 +2,14 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# Add keyboard remappings for chromebook
-[ "$HOSTNAME" = "gal" ] && xkbcomp -I$HOME/.xkb ~/.xkb/keymap/mykbd $DISPLAY > /dev/null 2>&1
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
       *) return;;
 esac
+
+# Add keyboard remappings for chromebook
+[ "$HOSTNAME" = "gal" ] && xkbcomp -I$HOME/.xkb ~/.xkb/keymap/mykbd $DISPLAY > /dev/null 2>&1
 
 export DIFF=/usr/bin/vimdiff
 

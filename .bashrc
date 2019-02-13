@@ -28,7 +28,8 @@ HISTSIZE=1000
 HISTFILESIZE=2000
 
 # Colorize less and use case insensitive search
-LESS=-Ri
+LESS=-SFRi
+export PAGER="less -SFRi"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.

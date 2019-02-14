@@ -17,7 +17,6 @@ check_dep git
 ln -s ~/home/.bashrc    ~
 ln -s ~/home/.tmux.conf ~
 ln -s ~/home/.vimrc     ~
-ln -s ~/home/.vim       ~
 
 # Add keyboard remappings for chromebook
 [ "$HOSTNAME" = "gal" ] && ln -s ~/home/.xkb ~

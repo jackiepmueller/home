@@ -20,6 +20,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 Plug 'vim-scripts/a.vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'vim-scripts/CSApprox'
 call plug#end()
 
 """" YCM """"

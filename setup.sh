@@ -30,20 +30,20 @@ check_dep() {
 
 # create a symlink from a file in ~/home to ~
 #
-# arg 1: a file in ~/home
-# arg 2: an optional path relative to ~
+# arg 1: file in ~/home
+# arg 2: optional "to" path relative to ~ 
+# arg 3: optional "from" path relative to ~/home
 make_sym() {
     from=~/home/$1
     to=~/$1
 
+    [ $# -ge 3 ] && from=~/home/$3/$1
+
     [ -e $from ] || error "making symlink $to -> $from, $from doesn't exist"
 
-    if [ $# == 2 ]; then
-        to=~/$2/$1
-    fi
+    [ $# -ge 2 ] && to=~/$2/$1
 
     [ -e $to ] && [ ! -h $to ] && error "making symlink $to -> $from, $to exists and is not a symlink"
-
 
     if [ ! -e $to ]; then
         ln -s $from $to || error "making symlink $to -> $from"
@@ -99,10 +99,12 @@ plug=~/.vim/autoload/plug.vim
 if [ ! -e $plug ]; then
     if [ ! -d vim-plug ]; then
         git clone https://github.com/junegunn/vim-plug.git || error "cloning vim-plug"
+        fetched "vim-plug"
     fi
-    $from = ~/home/vim-plug/plug.vim
-    ln -s $from $plug || error "making symlink $plug -> $from"
-    fetched $plug
+
+    #ln -s $from $plug || error "making symlink $plug -> $from"
+    make_sym plug.vim .vim/autoload vim-plug
+    #created "$from -> $plug"
 else
     found $plug
 fi

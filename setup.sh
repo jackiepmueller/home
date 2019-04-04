@@ -59,6 +59,11 @@ make_sym_link init.vim .config/nvim
 # Create swap files dir
 [ ! -d ~/.vim/swapfiles ] && mkdir -p ~/.vim/swapfiles
 
+# Create colors dir
+[ ! -d ~/.vim/colors ] && mkdir -p ~/.vim/colors
+
+make_sym_link mevening.vim .vim/colors
+
 # Vim Plug
 if [ ! -f ~/.vim/autoload/plug.vim ]; then
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

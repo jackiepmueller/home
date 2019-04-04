@@ -98,13 +98,13 @@ make_sym mevening.vim .vim/colors
 plug=~/.vim/autoload/plug.vim
 if [ ! -e $plug ]; then
     if [ ! -d vim-plug ]; then
-        git clone https://github.com/junegunn/vim-plug.git || error "cloning vim-plug"
+        git clone https://github.com/junegunn/vim-plug.git ~/home/vim-plug || error "cloning vim-plug"
         fetched "vim-plug"
     fi
 
-    #ln -s $from $plug || error "making symlink $plug -> $from"
+    make_dir .vim/autoload
+
     make_sym plug.vim .vim/autoload vim-plug
-    #created "$from -> $plug"
 else
     found $plug
 fi

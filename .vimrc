@@ -1,8 +1,8 @@
-"""" COMMON SETTINGS """"
+"""" COMMON SETTINGS
 set nocompatible                " vim defaults, not vi
 "set t_Co=256
 
-"""" VIM-PLUG """"
+"""" VIM-PLUG
 let s:plugin_dir='~/.vim/plugged'
 let s:plug_file='~/.vim/autoload/plug.vim'
 
@@ -18,19 +18,20 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-Plug 'vim-scripts/a.vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'vim-scripts/a.vim'
 Plug 'vim-scripts/CSApprox'
+Plug 'vim-scripts/star-search'
 call plug#end()
 
-"""" YCM """"
+"""" YCM
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 
-"""" a.vim """"
+"""" a.vim
 let g:alternateRelativeFiles = 1 " Files opened with :A will open relative to cwd
 
-"""" General """"
+"""" General
 set autoindent smartindent                 " smarter indent behavior
 autocmd FileType make setlocal noexpandtab " Don't insert spaces for makefiles
 set smarttab                               " make tab and backspace smarter
@@ -47,11 +48,11 @@ set formatoptions=tcqlron                  " auto-wrap lines/comments at textwid
                                            " recognize numbered lists
 set directory=~/.vim/swapfiles//
 
-"set incsearch       " incremental search highlight
+set noincsearch     " incremental search highlight
 set scrolloff=3     " show more context around cursor
 "set cursorline      " highlight cursor line number
 
-"""" Syntax """"
+"""" Syntax
 syntax on                       " enable syntax highlighting
 "set foldmethod=syntax           " syntax-based code folding, this was the cause of insane input lag
 set nofoldenable                " disable folding (enable in USERS section)
@@ -60,7 +61,7 @@ set cinoptions=:0,l1,t0,g0      " case labels at column 0,
                                 " return type declaration at column 0,
                                 " c++ scope declarations at column 0
 
-"""" Shortcuts """"
+"""" Shortcuts
 " forces (re)indentation of a block of code
 nmap <c-j> vip=
 " scroll forward one screen
@@ -105,7 +106,7 @@ nmap <c-u> :close<cr>
 
 let $kernel_version=system('uname -r | tr -d "\n"')
 
-"""" PROFILES """"
+"""" PROFILES 
 " 4 Spaces (4 spaces instead of tabs)
 set expandtab      " use spaces, not tabs
 set tabstop=4      " tab this width of spaces
@@ -125,7 +126,7 @@ set softtabstop=4  " backspace amount when tab-aligned (like using tabs)
 "au Syntax c,cpp syn keyword cType u_int64_t u_int32_t u_int16_t u_int8_t
 "au Syntax c,cpp syn keyword cOperator likely unlikely
 
-"""" Statusline """"
+"""" Statusline 
 set laststatus=2                " Always show status line
 set statusline=
 set statusline +=%1*\ %n\ %*    "buffer number
@@ -146,7 +147,7 @@ colorscheme mevening  " the color scheme
 "let g:matchparen_insert_timeout = 1
 let g:loaded_matchparen = 0
 
-"""" Functions """"
+"""" Functions 
 "" Trim trailing whitespace from all lines
 fun! TrimWhitespace()
     let l:save = winsaveview()
@@ -166,7 +167,7 @@ fun! SyntaxOn(ext, type)
     execute "au BufNewFile,BufRead *." . a:ext . " set filetype=" . a:type
 endfun
 
-"""" Plugin specific configs """"
+"""" Plugin specific configs 
 let g:fzf_layout = { 'down': '~30%'}
 "let g:fzf_commits_log_options = '--graph --color=always --all --pretty=tformat:"%C(auto)%h%d %s %C(green)(%ar)%Creset %C(blue)<%an>%Creset"'
 
@@ -193,10 +194,20 @@ command! -bang -nargs=? -complete=dir Files
 "" Use sql syntax highlighting for *.sqli files
 call SyntaxOn('sqli', 'sql')
 
-"" Make arrows do something useful
-"nnoremap <Up>    :resize +5<cr>
-"nnoremap <Down>  :resize -5<cr>
-"nnoremap <Left>  :vertical resize -5<cr>
-"nnoremap <Right> :vertical resize +5<cr>
+"" Use cpp syntax highlighting for *.inc files
+call SyntaxOn('inc',  'cpp')
 
 autocmd VimEnter * CSApprox
+
+"""" Snippets
+function! _snippets()
+
+"" Change pushInputEvent(()) to pushInputEvent()
+%s/pushInputEvent((\(.\{-}\)))/pushInputEvent(\1)
+%s/pushOutputValidator((\(.\{-}\)))/pushOutputValidator(\1)
+
+"" Rearrange const, & in the output has to be escaped since it inserts the
+"" entire matched pattern
+%s/const \(.\{-}\) &/\1 const \& /gc
+
+endfunction

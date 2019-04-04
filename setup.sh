@@ -3,21 +3,26 @@
 # vim configuration line:
 # ./configure --with-features=huge --enable-python3interp=yes --enable-pythoninterp=yes --with-python3-config-dir=<the right place> --enable-fail-if-missing
 
+GREEN="\033[0;32m"
+YELLOW="\033[0;33m"
+RED="\033[0;31m"
+NC="\033[0m"
+
 error() {
-    echo " error: $1" >&2
+    echo -e " ${RED}error${NC}  [$1]" >&2
     exit 1
 }
 
 found() {
-    echo " found  [$1]"
+    echo -e " ${GREEN}found${NC}  [$1]"
 }
 
 created() {
-    echo "created [$1]"
+    echo -e "${YELLOW}created${NC} [$1]"
 }
 
 fetched() {
-    echo "fetched [$1]"
+    echo -e "${YELLOW}fetched${NC} [$1]"
 }
 
 check_dep() {
@@ -65,7 +70,6 @@ make_dir() {
 
 check_dep vim
 check_dep tmux
-check_dep curl
 check_dep git
 
 # Basics
@@ -73,7 +77,7 @@ make_sym .bashrc
 make_sym .tmux.conf
 make_sym .vimrc
 make_sym .inputrc
-
+make_sym .psqlrc
 
 # Add keyboard remappings for chromebook
 [ "$HOSTNAME" = "gal" ] && make_sym .xkb

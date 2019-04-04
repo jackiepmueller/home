@@ -5,21 +5,34 @@
 
 check_dep() {
     if ! [ -x "$(command -v $1)" ]; then
-        echo "Error $1 is not installed" >&2
+        echo "error $1 is not installed" >&2
         exit 1
     else
-        echo "Found $1"
+        echo "found $1"
     fi
 }
 
+# create a symlink from a file in ~/home to ~
+#
+# arg 1: a file in ~/home
+# arg 2: an optional path relative to ~
 make_sym_link() {
-    if [ ! -e ~/$1 ]; then
-        ln -s ~/home/$1 ~
+    from=~/home/$1
+    to=~/$1
+    if [ $# == 2 ]; then
+        to=~/$2/$1
+    fi
+
+    if [ ! -e $to ]; then
+        ln -s $from $to 
+        echo "created [$to -> $from]"
     else
-        echo "[$1 -> home/$1] already exists"
+        echo " found  [$to -> $from]"
     fi
 }
 
+check_dep vim
+check_dep tmux
 check_dep curl
 check_dep git
 
@@ -29,16 +42,22 @@ make_sym_link .tmux.conf
 make_sym_link .vimrc
 make_sym_link .inputrc
 
-# Add keyboard remappings for chromebook
-[ "$HOSTNAME" = "gal" ] && ln -s ~/home/.xkb ~
 
-mkdir -p ~/.bashrc.d
+# Add keyboard remappings for chromebook
+[ "$HOSTNAME" = "gal" ] && make_sym_link .xkb
+
+[ ! -d ~/.bashrc.d ] && mkdir -p ~/.bashrc.d
 
 # Debian/Ubuntu specific stuff
-[ -f "/etc/debian_version" ] && ln -s ~/home/deb.bash ~/.bashrc.d/deb.bash
+[ -f "/etc/debian_version" ] && make_sym_link deb.bash .bashrc.d
+
+# Create nvim config dir
+[ ! -d ~/.config/nvim ] && mkdir -p ~/.config/nvim
+
+make_sym_link init.vim .config/nvim
 
 # Create swap files dir
-[ ! -d ~/.vim/swapfiles ] && mkdir ~/.vim/swapfiles
+[ ! -d ~/.vim/swapfiles ] && mkdir -p ~/.vim/swapfiles
 
 # Vim Plug
 if [ ! -f ~/.vim/autoload/plug.vim ]; then
@@ -46,4 +65,4 @@ if [ ! -f ~/.vim/autoload/plug.vim ]; then
 fi
 
 # TPM
-[ ! -d ~/.tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+[ ! -d ~/.tmux/plugins/tpm ] && mkdir -p ~/.tmux/plugins && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm

@@ -6,17 +6,11 @@ set nocompatible                " vim defaults, not vi
 let s:plugin_dir='~/.vim/plugged'
 let s:plug_file='~/.vim/autoload/plug.vim'
 
-"" Doesn't seem to work.. curl segfaults
-"if empty(glob(s:plug_file))
-"    silent execute '!curl -fLo ' . s:plug_file . ' --create-dirs -k ' .
-"        \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-"    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-"endif
-
 call plug#begin(s:plugin_dir)
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-easy-align'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/a.vim'
@@ -100,6 +94,13 @@ map <leader>gs :GFiles?<cr>
 map <leader>gl :Commits<cr>
 map <leader>gbl :BCommits<cr>
 imap <c-x><c-l> <plug>(fzf-complete-line)
+
+"" vim-easy-align mappings
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " Close split
 nmap <c-u> :close<cr>

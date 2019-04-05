@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# vim configuration line:
-# ./configure --with-features=huge --enable-python3interp=yes --enable-pythoninterp=yes --with-python3-config-dir=<the right place> --enable-fail-if-missing
+cd ~/home || error "couldn't cd to ~/home"
 
 GREEN="\033[0;32m"
 YELLOW="\033[0;33m"
@@ -104,6 +103,8 @@ if [ ! -e $plug ]; then
     if [ ! -d vim-plug ]; then
         git clone https://github.com/junegunn/vim-plug.git ~/home/vim-plug || error "cloning vim-plug"
         fetched "vim-plug"
+    else
+        found "vim-plug"
     fi
 
     make_dir .vim/autoload

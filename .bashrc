@@ -55,6 +55,9 @@ alias vir='vim --servername VIM-`hostname` --remote'
 alias gdd='git difftool -d'
 alias gs='git status'
 alias gl='git log'
+alias frb='git fetch && git rebase origin/master'
+alias frbb='git fetch && git rebase origin/master && bbc debug'
+alias frbbt='git fetch && git rebase origin/master && bbc debug && pt -l25'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like

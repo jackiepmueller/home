@@ -35,6 +35,7 @@ set norelativenumber                       " display relative line numbers
 set hidden                                 " allow switching buffers without saving
 set hlsearch                               " highlight search matches
 set backspace=indent,eol,start             " allow backspace over indent, eol, start
+set updatetime=100                         " time until swap files are written, also affects things like git gutter.
 set formatoptions=tcqlron                  " auto-wrap lines/comments at textwidth,
                                            " allow formatting using gq commands,
                                            " long lines not broken in insert mode
@@ -43,7 +44,7 @@ set formatoptions=tcqlron                  " auto-wrap lines/comments at textwid
 set directory=~/.vim/swapfiles//
 
 set noincsearch     " incremental search highlight
-set scrolloff=3     " show more context around cursor
+set scrolloff=5     " show more context around cursor
 "set cursorline      " highlight cursor line number
 
 """" Syntax

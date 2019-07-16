@@ -77,6 +77,7 @@ make_sym .tmux.conf
 make_sym .vimrc
 make_sym .inputrc
 make_sym .psqlrc
+make_sym .gdbinit
 
 # Add keyboard remappings for chromebook
 [ "$HOSTNAME" = "gal" ] && make_sym .xkb

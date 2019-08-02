@@ -41,20 +41,20 @@ set formatoptions=tcqlron                  " auto-wrap lines/comments at textwid
                                            " long lines not broken in insert mode
                                            " auto-insert comment leader on Enter or O,
                                            " recognize numbered lists
-set directory=~/.vim/swapfiles//
-
-set noincsearch     " incremental search highlight
-set scrolloff=5     " show more context around cursor
-"set cursorline      " highlight cursor line number
+set directory=~/.vim/swapfiles//           " place vim swap files in a separate dir
+set noincsearch                            " don't use incremental search highlight
+set scrolloff=5                            " show more context around cursor
+set cursorline                             " highlight cursor line number
 
 """" Syntax
-syntax on                       " enable syntax highlighting
-"set foldmethod=syntax           " syntax-based code folding, this was the cause of insane input lag
-set nofoldenable                " disable folding (enable in USERS section)
-set cinoptions=:0,l1,t0,g0      " case labels at column 0,
-                                " align line after case label with label,
-                                " return type declaration at column 0,
-                                " c++ scope declarations at column 0
+syntax on                   " enable syntax highlighting
+set foldmethod=syntax       " syntax-based code folding, this was the cause of insane input lag
+set foldnestmax=1           " only fold one level
+set nofoldenable            " disable folding (enable in USERS section)
+set cinoptions=:0,l1,t0,g0  " case labels at column 0,
+                            " align line after case label with label,
+                            " return type declaration at column 0,
+                            " c++ scope declarations at column 0
 
 """" Shortcuts
 " forces (re)indentation of a block of code
@@ -65,14 +65,12 @@ nmap <space> <c-f>
 nmap <bs> <c-b>
 " cycle between split windows
 nmap - <c-w>w
+" Close split
+nmap <c-u> :close<cr>
 " toggle line wrapping
 nmap <silent> tw :set wrap!<cr>
 " toggle numbering
 nmap <silent> tn :set number!<cr>
-" default s seems eclipsed by c functionality. instead mapping s to 'insert
-" one char and stay in normal mode'
-"nnoremap s :exec "normal i".nr2char(getchar())."\e"<cr>
-"nnoremap S :exec "normal a".nr2char(getchar())."\e"<cr>
 " YouCompleteMe GoTo
 nmap <F2> :YcmCompleter GoToImprecise<cr>
 nmap <F3> :YcmCompleter GoTo<cr>
@@ -102,9 +100,6 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-
-" Close split
-nmap <c-u> :close<cr>
 
 let $kernel_version=system('uname -r | tr -d "\n"')
 

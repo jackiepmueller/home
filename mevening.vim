@@ -7,6 +7,21 @@ endif
 
 let colors_name = "mevening"
 
+" Colors used in status line
+
+" Orange
+hi User1 guifg=#eea040 guibg=#222222
+
+" Red
+hi User2 guifg=#dd3333 guibg=#222222
+
+" ???
+hi User3 guifg=#ff66ff guibg=#222222
+
+" Green
+hi User4 guifg=#a0ee40 guibg=#222222
+hi User5 guifg=#eeee40 guibg=#222222
+
 hi Normal guifg=White guibg=grey20
 
 " Groups used in the 'highlight' and 'guicursor' options default value.
@@ -32,8 +47,8 @@ hi SpecialKey   guifg=Cyan
 hi Title        gui=bold guifg=Magenta
 hi WarningMsg   guifg=Red
 hi WildMenu     guibg=Yellow guifg=Black
-hi Folded       guibg=LightGrey guifg=DarkBlue
-hi FoldColumn   guibg=Grey guifg=DarkBlue
+hi Folded       guibg=#222222 guifg=White
+"hi FoldColumn   guibg=Grey guifg=White
 hi DiffAdd      guibg=DarkBlue
 hi DiffChange   guibg=DarkMagenta
 hi DiffDelete   gui=bold guifg=Blue guibg=DarkCyan
@@ -47,12 +62,5 @@ hi Special      guifg=Orange
 hi Statement    guifg=#ffff60 gui=bold
 hi Type         guifg=#60ff60 gui=bold
 hi Ignore       guifg=grey20
-
-" Colors used in status line
-hi User1 guifg=#eea040 guibg=#222222
-hi User2 guifg=#dd3333 guibg=#222222
-hi User3 guifg=#ff66ff guibg=#222222
-hi User4 guifg=#a0ee40 guibg=#222222
-hi User5 guifg=#eeee40 guibg=#222222
 
 " vim: sw=2

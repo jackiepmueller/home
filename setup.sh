@@ -98,6 +98,10 @@ make_dir .vim/swapfiles
 make_dir .vim/colors
 make_sym mevening.vim .vim/colors
 
+# Setup vim syntax
+make_dir .vim/syntax
+make_sym c.vim .vim/syntax
+
 # Vim Plug
 plug=~/.vim/autoload/plug.vim
 if [ ! -e $plug ]; then

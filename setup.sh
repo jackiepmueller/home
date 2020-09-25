@@ -67,7 +67,8 @@ make_dir() {
     fi
 }
 
-check_dep vim
+check_dep nvim
+check_dep xsel  # system clip board support
 check_dep tmux
 check_dep git
 
@@ -101,6 +102,10 @@ make_sym mevening.vim .vim/colors
 # Setup vim syntax
 make_dir .vim/syntax
 make_sym c.vim .vim/syntax
+
+# Setup non-plug plugins
+make_dir .vim/plugin
+make_sym a.vim .vim/plugin
 
 # Vim Plug
 plug=~/.vim/autoload/plug.vim

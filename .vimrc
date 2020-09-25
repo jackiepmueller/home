@@ -11,19 +11,15 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 Plug 'airblade/vim-gitgutter'
-Plug 'vim-scripts/a.vim'
 Plug 'vim-scripts/CSApprox'
 Plug 'vim-scripts/star-search'
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " do CocInstall coc-clangd afterwards
 call plug#end()
 
-"""" YCM
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_confirm_extra_conf = 0
-
 """" a.vim
-let g:alternateRelativeFiles = 1 " Files opened with :A will open relative to cwd
+let g:alternateRelativeFiles = 1      " Files opened with :A will open relative to cwd
+let g:alternateNoDefaultAlternate = 1 " Don't create new files
 
 """" General
 set autoindent smartindent                 " smarter indent behavior
@@ -208,3 +204,7 @@ function! _snippets()
 %s/const \(.\{-}\) &/\1 const \& /gc
 
 endfunction
+
+"" TEMP
+set nowrapscan
+let g:coc_disable_startup_warning = 1

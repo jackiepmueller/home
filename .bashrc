@@ -108,3 +108,10 @@ if [ -n "$(ls ~/.bashrc.d)" ]; then
     fi
   done
 fi
+
+#TEMP
+alias cdc='cd ~/cpp'
+
+if [ -f /opt/bats/share/git/contrib/completion/git-completion.bash ]; then
+    source /opt/bats/share/git/contrib/completion/git-completion.bash
+fi

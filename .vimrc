@@ -21,11 +21,15 @@ call plug#end()
 let g:alternateRelativeFiles = 1      " Files opened with :A will open relative to cwd
 let g:alternateNoDefaultAlternate = 1 " Don't create new files
 
+""" coc.nvim
+let g:coc_disable_startup_warning = 1
+
 """" General
 set autoindent smartindent                 " smarter indent behavior
 autocmd FileType make setlocal noexpandtab " Don't insert spaces for makefiles
 set smarttab                               " make tab and backspace smarter
 set nowrap                                 " don't wrap long lines
+set nowrapscan                             " don't wrap search
 set number                                 " display line numbers
 set norelativenumber                       " display relative line numbers
 set hidden                                 " allow switching buffers without saving
@@ -43,14 +47,15 @@ set scrolloff=5                            " show more context around cursor
 set cursorline                             " highlight cursor line number
 
 """" Syntax
-syntax on                   " enable syntax highlighting
-set foldmethod=syntax       " syntax-based code folding, this was the cause of insane input lag
-set foldnestmax=1           " only fold one level
-set nofoldenable            " disable folding (enable in USERS section)
-set cinoptions=:0,l1,t0,g0  " case labels at column 0,
-                            " align line after case label with label,
-                            " return type declaration at column 0,
-                            " c++ scope declarations at column 0
+syntax on                      " enable syntax highlighting
+set foldmethod=syntax          " syntax-based code folding, this was the cause of insane input lag
+set foldnestmax=1              " only fold one level
+set nofoldenable               " disable folding (enable in USERS section)
+set cinoptions=:0,l1,t0,g0,N-s " case labels at column 0,
+                               " align line after case label with label,
+                               " return type declaration at column 0,
+                               " c++ scope declarations at column 0
+                               " don't indent for namespaces
 
 """" Shortcuts
 " forces (re)indentation of a block of code
@@ -58,9 +63,9 @@ nmap <c-j> vip=
 " scroll forward one screen
 nmap <space> <c-f>
 " scroll backward one screen
-nmap <bs> <c-b>
+"nmap <bs> <c-b>
 " cycle between split windows
-nmap - <c-w>w
+"nmap - <c-w>w
 " Close split
 nmap <c-u> :close<cr>
 " toggle line wrapping
@@ -97,27 +102,11 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-let $kernel_version=system('uname -r | tr -d "\n"')
-
-"""" PROFILES 
-" 4 Spaces (4 spaces instead of tabs)
-set expandtab      " use spaces, not tabs
-set tabstop=4      " tab this width of spaces
-set shiftwidth=4   " indent this width of spaces
-set softtabstop=4  " backspace amount when tab-aligned (like using tabs)
-
-"" Kernel
-"set noexpandtab                              " use tabs, not spaces
-"set tabstop=8                                " tab this width of spaces
-"set shiftwidth=8                             " indent this width of spaces
-"au Syntax c,cpp syn match Error /^ \+/       " highlight any leading spaces
-"au Syntax c,cpp syn match Error / \+$/       " highlight any trailing spaces
-""au Syntax c,cpp syn match Error /\%>80v.\+/  " highlight anything past 80 in red
-"au Syntax c,cpp syn keyword cType uint ubyte ulong boolean_t
-"au Syntax c,cpp syn keyword cType int64_t int32_t int16_t int8_t
-"au Syntax c,cpp syn keyword cType uint64_t uint32_t uint16_t uint8_t
-"au Syntax c,cpp syn keyword cType u_int64_t u_int32_t u_int16_t u_int8_t
-"au Syntax c,cpp syn keyword cOperator likely unlikely
+""" Indent settings
+set expandtab                   " use spaces, not tabs
+set tabstop=4                   " tab this width of spaces
+set shiftwidth=4                " indent this width of spaces
+set softtabstop=4               " backspace amount when tab-aligned (like using tabs)
 
 """" Statusline 
 set laststatus=2                " Always show status line
@@ -128,12 +117,12 @@ set statusline +=%2*%m%*        "modified flag
 set statusline +=%1*%=%5l%*     "current line
 set statusline +=%2*/%L%*       "total lines
 set statusline +=%1*%4v\ %*     "virtual column number
-"set statusline +=%1*\ %f%*
-"set statusline +=\ %l
-"set statusline +=\ %L
-"set statusline +=\ %n
 
 colorscheme mevening  " the color scheme
+
+""" Leader
+let mapleader = ' '
+
 
 "" Limit matchparens timeout
 "let g:matchparen_timeout = 5
@@ -204,7 +193,3 @@ function! _snippets()
 %s/const \(.\{-}\) &/\1 const \& /gc
 
 endfunction
-
-"" TEMP
-set nowrapscan
-let g:coc_disable_startup_warning = 1

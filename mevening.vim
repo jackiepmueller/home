@@ -20,13 +20,14 @@ hi User3 guifg=#ff66ff guibg=#222222
 
 " Green
 hi User4 guifg=#a0ee40 guibg=#222222
+
+" ???
 hi User5 guifg=#eeee40 guibg=#222222
 
 hi Normal guifg=White guibg=grey20
 
 " Groups used in the 'highlight' and 'guicursor' options default value.
 hi ErrorMsg     guibg=#dd3333 guifg=White
-hi Pmenu        guibg=grey30
 hi IncSearch    gui=reverse
 hi ModeMsg      gui=bold
 hi StatusLine   guibg=#222222
@@ -46,13 +47,14 @@ hi Question     gui=bold guifg=Green
 hi Search       guibg=Yellow guifg=Black
 hi SpecialKey   guifg=Cyan
 hi Title        gui=bold guifg=Magenta
-hi WarningMsg   guifg=#dd3333 
+hi WarningMsg   guifg=#f0799f 
 hi WildMenu     guibg=Yellow guifg=Black
 hi Folded       guibg=#222222 guifg=White
 "hi FoldColumn   guibg=Grey guifg=White
 hi DiffAdd      guibg=DarkBlue
 hi DiffChange   guibg=DarkMagenta
 hi DiffDelete   gui=bold guifg=Blue guibg=DarkCyan
+hi Pmenu        guibg=grey30
 hi SignColumn   guibg=grey20
 
 " Clear this to get cursorline enabled but only highlight the line number

@@ -45,7 +45,7 @@ shopt -s checkwinsize
 # Disable ctrl-s and ctrl-q
 stty -ixon
 
-# Set prompt to username&hostname:PWD$
+# Set prompt to username@hostname:PWD$
 PS1='\u@\h:\w\$ '
 
 # some more aliases
@@ -56,8 +56,6 @@ alias gdd='git difftool -d'
 alias gs='git status'
 alias gl='git log'
 alias frb='git fetch && git rebase origin/master'
-alias frbb='git fetch && git rebase origin/master && bbc debug'
-alias frbbt='git fetch && git rebase origin/master && bbc debug && pt -l25'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -87,6 +85,27 @@ export FZF_DEFAULT_OPTS='
 
 export EDITOR=vim
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+function start_agent {
+    echo "Initialising new SSH agent..."
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+    echo succeeded
+    chmod 600 "${SSH_ENV}"
+    . "${SSH_ENV}" > /dev/null
+    /usr/bin/ssh-add;
+}
+
+# Source SSH settings, if applicable
+
+if [ -f "${SSH_ENV}" ]; then
+    . "${SSH_ENV}" > /dev/null
+    #ps ${SSH_AGENT_PID} doesn't work under cywgin
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+        start_agent;
+    }
+else
+    start_agent;
+fi
 
 # Shows who committed the most in the past 2 years
 function whoowns {                                                                                                                                                                                                                                                               

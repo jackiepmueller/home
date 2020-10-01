@@ -67,6 +67,11 @@ hi Statement    guifg=#ffff60 gui=bold
 hi Type         guifg=#60ff60 gui=bold
 hi Ignore       guifg=grey20
 
+" vim-gitgutter
+hi GitGutterDelete  guifg=#80a0ff guibg=grey20
+hi diffRemoved      guifg=#80a0ff
+
+" coc.nvim
 hi link CocErrorSign WarningMsg
 
 " vim: sw=2

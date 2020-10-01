@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ~/home || error "couldn't cd to ~/home"
+THIS_DIR=home
 
 GREEN="\033[0;32m"
 YELLOW="\033[0;33m"
@@ -32,16 +32,16 @@ check_dep() {
     fi
 }
 
-# create a symlink from a file in ~/home to ~
+# create a symlink from a file in ~/$THIS_DIR to ~
 #
-# arg 1: file in ~/home
+# arg 1: file in ~/$THIS_DIR
 # arg 2: optional "to" path relative to ~ 
-# arg 3: optional "from" path relative to ~/home
+# arg 3: optional "from" path relative to ~/$THIS_DIR
 make_sym() {
-    from=~/home/$1
+    from=~/$THIS_DIR/$1
     to=~/$1
 
-    [ $# -ge 3 ] && from=~/home/$3/$1
+    [ $# -ge 3 ] && from=~/$THIS_DIR/$3/$1
 
     [ -e $from ] || error "making symlink $to -> $from, $from doesn't exist"
 
@@ -66,6 +66,8 @@ make_dir() {
         found $dirname
     fi
 }
+
+cd ~/$THIS_DIR || error "couldn't cd to ~/$THIS_DIR"
 
 check_dep nvim
 check_dep xsel  # system clip board support
@@ -111,7 +113,7 @@ make_sym a.vim .vim/plugin
 plug=~/.vim/autoload/plug.vim
 if [ ! -e $plug ]; then
     if [ ! -d vim-plug ]; then
-        git clone https://github.com/junegunn/vim-plug.git ~/home/vim-plug || error "cloning vim-plug"
+        git clone https://github.com/junegunn/vim-plug.git ~/$THIS_DIR/vim-plug || error "cloning vim-plug"
         fetched "vim-plug"
     else
         found "vim-plug"

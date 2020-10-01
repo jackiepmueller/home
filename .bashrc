@@ -86,26 +86,26 @@ export FZF_DEFAULT_OPTS='
 export EDITOR=vim
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-function start_agent {
-    echo "Initialising new SSH agent..."
-    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-    echo succeeded
-    chmod 600 "${SSH_ENV}"
-    . "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add;
-}
-
-# Source SSH settings, if applicable
-
-if [ -f "${SSH_ENV}" ]; then
-    . "${SSH_ENV}" > /dev/null
-    #ps ${SSH_AGENT_PID} doesn't work under cywgin
-    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-        start_agent;
-    }
-else
-    start_agent;
-fi
+#function start_agent {
+#    echo "Initialising new SSH agent..."
+#    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+#    echo succeeded
+#    chmod 600 "${SSH_ENV}"
+#    . "${SSH_ENV}" > /dev/null
+#    /usr/bin/ssh-add;
+#}
+#
+## Source SSH settings, if applicable
+#
+#if [ -f "${SSH_ENV}" ]; then
+#    . "${SSH_ENV}" > /dev/null
+#    #ps ${SSH_AGENT_PID} doesn't work under cywgin
+#    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+#        start_agent;
+#    }
+#else
+#    start_agent;
+#fi
 
 # Shows who committed the most in the past 2 years
 function whoowns {                                                                                                                                                                                                                                                               
@@ -113,9 +113,6 @@ function whoowns {
 }
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-# Keep work related stuff in a separate rc file
-[ -f ~/.work.bashrc ] && source ~/.work.bashrc
 
 # Load any extensions in ~/.bashrc.d
 mkdir -p ~/.bashrc.d
@@ -126,11 +123,4 @@ if [ -n "$(ls ~/.bashrc.d)" ]; then
       source "${dotfile}"
     fi
   done
-fi
-
-#TEMP
-alias cdc='cd ~/cpp'
-
-if [ -f /opt/bats/share/git/contrib/completion/git-completion.bash ]; then
-    source /opt/bats/share/git/contrib/completion/git-completion.bash
 fi

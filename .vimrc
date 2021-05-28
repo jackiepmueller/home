@@ -14,7 +14,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/CSApprox'
 Plug 'vim-scripts/star-search'
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} " do CocInstall coc-clangd afterwards
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " do CocInstall coc-clangd afterwards
 call plug#end()
 
 """" a.vim
@@ -22,7 +22,7 @@ let g:alternateRelativeFiles = 1      " Files opened with :A will open relative 
 let g:alternateNoDefaultAlternate = 1 " Don't create new files
 
 """ coc.nvim
-let g:coc_disable_startup_warning = 1
+"let g:coc_disable_startup_warning = 1
 
 """" General
 set autoindent smartindent                 " smarter indent behavior
@@ -179,6 +179,7 @@ call SyntaxOn('sqli', 'sql')
 "" Use cpp syntax highlighting for *.inc files
 call SyntaxOn('inc',  'cpp')
 
+autocmd VimEnter * colorscheme mevening
 autocmd VimEnter * CSApprox
 
 """" Snippets

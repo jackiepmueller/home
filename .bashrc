@@ -50,8 +50,6 @@ PS1='\u@\h:\w\$ '
 
 # some more aliases
 alias pyclean='find . -name *.pyc | xargs rm -v'
-alias vis='vim --servername VIM-`hostname`'
-alias vir='vim --servername VIM-`hostname` --remote'
 alias gdd='git difftool -d'
 alias gs='git status'
 alias gl='git log'
@@ -83,7 +81,7 @@ export FZF_DEFAULT_OPTS='
     --color hl+:197
 '
 
-export EDITOR=vim
+export EDITOR=nvim
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 #function start_agent {

@@ -46,6 +46,10 @@ set noincsearch                            " don't use incremental search highli
 set scrolloff=5                            " show more context around cursor
 set cursorline                             " highlight cursor line number
 
+"""" normal tab completion
+set wildmode=longest,list,full
+set wildmenu
+
 """" Syntax
 syntax on                      " enable syntax highlighting
 set foldmethod=syntax          " syntax-based code folding, this was the cause of insane input lag

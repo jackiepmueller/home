@@ -1,4 +1,5 @@
 set disassembly-flavor intel
+set print pretty on
 
 python
 import sys

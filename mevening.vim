@@ -66,6 +66,7 @@ hi Special      guifg=Orange
 hi Statement    guifg=#ffff60 gui=bold
 hi Type         guifg=#60ff60 gui=bold
 hi Ignore       guifg=grey20
+hi clear Identifier
 
 " vim-gitgutter
 hi GitGutterDelete  guifg=#80a0ff guibg=grey20

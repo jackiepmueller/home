@@ -8,13 +8,13 @@ from libstdcxx.v6.printers import register_libstdcxx_printers
 register_libstdcxx_printers(None)
 end
 
-python
-import sys
-sys.path.insert(0, '/home/jmueller/source/gdb/python/')
-from bats.printers import register_bats_printers
-register_bats_printers(None)
-import bats.commands # for wgrep-print
-end
+#python
+#import sys
+#sys.path.insert(0, '/home/jmueller/source/gdb/python/')
+#from bats.printers import register_bats_printers
+#register_bats_printers(None)
+#import bats.commands # for wgrep-print
+#end
 
 python
 import sys

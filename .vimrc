@@ -23,6 +23,7 @@ let g:alternateNoDefaultAlternate = 1 " Don't create new files
 
 """ coc.nvim
 "let g:coc_disable_startup_warning = 1
+let g:coc_default_semantic_highlight_groups = 0
 
 """" General
 set autoindent smartindent                 " smarter indent behavior

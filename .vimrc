@@ -25,6 +25,9 @@ let g:alternateNoDefaultAlternate = 1 " Don't create new files
 "let g:coc_disable_startup_warning = 1
 let g:coc_default_semantic_highlight_groups = 0
 
+command! -nargs=0 EN :call CocAction('diagnosticNext')
+command! -nargs=0 EP :call CocAction('diagnosticPrevious')
+
 """" General
 set autoindent smartindent                 " smarter indent behavior
 autocmd FileType make setlocal noexpandtab " Don't insert spaces for makefiles

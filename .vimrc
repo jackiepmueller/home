@@ -49,6 +49,7 @@ set directory=~/.vim/swapfiles//           " place vim swap files in a separate 
 set noincsearch                            " don't use incremental search highlight
 set scrolloff=5                            " show more context around cursor
 set cursorline                             " highlight cursor line number
+set inccommand=                            " don't do incremental substitution
 
 """" normal tab completion
 set wildmode=longest,list,full
@@ -72,7 +73,7 @@ nmap <c-j> vip=
 nmap <space> <c-f>
 " scroll backward one screen
 "nmap <bs> <c-b>
-" cycle between split windows
+" cycle between split window
 "nmap - <c-w>w
 " Close split
 nmap <c-u> :close<cr>
@@ -154,7 +155,7 @@ endfun
 
 "" Enable syntax highlighting for ext
 fun! SyntaxOn(ext, type)
-    execute "au BufNewFile,BufRead *." . a:ext . " set filetype=" . a:type
+    execute "autocmd BufNewFile,BufRead *." . a:ext . " set filetype=" . a:type
 endfun
 
 """" Plugin specific configs 
@@ -189,6 +190,7 @@ call SyntaxOn('inc',  'cpp')
 
 autocmd VimEnter * colorscheme mevening
 autocmd VimEnter * CSApprox
+autocmd VimEnter * pwd
 
 """" Snippets
 function! _snippets()

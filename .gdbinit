@@ -3,10 +3,13 @@ set print pretty on
 
 python
 import sys
-sys.path.insert(0, '/opt/rh/devtoolset-8/root/usr/share/gdb/python/')
+sys.path.insert(0, '/opt/rh/devtoolset-11/root/usr/share/gdb/python/')
 from libstdcxx.v6.printers import register_libstdcxx_printers
 register_libstdcxx_printers(None)
 end
+
+# ignore c++ internals
+skip -gfi opt/rh/devtoolset-11/root/usr/include/c++/11/bits/*.h
 
 python
 import sys
@@ -16,45 +19,9 @@ register_bats_printers(None)
 import bats.commands # for wgrep-print
 end
 
-python
-import sys
-sys.path.insert(1, '/src/Boost-Pretty-Printer')
-import boost
-boost.register_printers(boost_version=(1,76,0))
-end
-
-define n
-    set logging file /dev/null
-    set logging redirect on
-    set logging on
-    next
-    set logging off
-    display
-end
-
-define s
-    set logging file /dev/null
-    set logging redirect on
-    set logging on
-    step
-    set logging off
-    display
-end
-
-define u
-    set logging file /dev/null
-    set logging redirect on
-    set logging on
-    up
-    set logging off
-    display
-end
-
-define do
-    set logging file /dev/null
-    set logging redirect on
-    set logging on
-    down
-    set logging off
-    display
-end
+#python
+#import sys
+#sys.path.insert(1, '/src/Boost-Pretty-Printer')
+#import boost
+#boost.register_printers(boost_version=(1,76,0))
+#end

@@ -50,6 +50,7 @@ set noincsearch                            " don't use incremental search highli
 set scrolloff=5                            " show more context around cursor
 set cursorline                             " highlight cursor line number
 set inccommand=                            " don't do incremental substitution
+set mouse=                                 " disable right click menu
 
 """" normal tab completion
 set wildmode=longest,list,full
@@ -191,6 +192,9 @@ call SyntaxOn('inc',  'cpp')
 autocmd VimEnter * colorscheme mevening
 autocmd VimEnter * CSApprox
 autocmd VimEnter * pwd
+
+"" Auto save buffers
+autocmd TextChanged,TextChangedI * silent write
 
 """" Snippets
 function! _snippets()

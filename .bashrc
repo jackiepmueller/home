@@ -54,6 +54,8 @@ alias gdd='git difftool -d'
 alias gs='git status'
 alias gl='git log'
 alias frb='git fetch && git rebase origin/master'
+alias ll='ls -lah'
+alias rl='readlink -f'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like

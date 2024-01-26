@@ -89,6 +89,7 @@ check_dep tmux
 check_dep git
 
 # Basics
+make_sym .bash_profile
 make_sym .bashrc
 make_sym .tmux.conf
 make_sym .vimrc

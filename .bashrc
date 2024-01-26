@@ -1,16 +1,3 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
-
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
-
-# Add keyboard remappings for chromebook
-[ "$HOSTNAME" = "gal" ] && xkbcomp -I$HOME/.xkb ~/.xkb/keymap/mykbd $DISPLAY > /dev/null 2>&1
-
 export DIFF=/usr/bin/vimdiff
 
 # Because I like 8 bit colors in my terminal
@@ -116,3 +103,5 @@ if [ -n "$(ls ~/.bashrc.d)" ]; then
   done
 fi
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

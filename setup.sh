@@ -5,10 +5,16 @@ THIS_DIR=home
 GREEN="\033[0;32m"
 YELLOW="\033[0;33m"
 RED="\033[0;31m"
+PURPLE="\033[0;35m"
 NC="\033[0m"
 
 error() {
     echo -e " ${RED}error${NC}  [$1]" >&2
+    exit 1
+}
+
+post() {
+    echo -e " ${PURPLE}post${NC}  [$1]" >&2
     exit 1
 }
 
@@ -27,6 +33,14 @@ fetched() {
 check_dep() {
     if ! [ -x "$(command -v $1)" ]; then
         error "$1 is not installed"
+    else
+        found $1
+    fi
+}
+
+check_post() {
+    if ! [ -x "$(command -v $1)" ]; then
+        post "$1 is not installed"
     else
         found $1
     fi
@@ -135,3 +149,8 @@ if [ ! -d $tpm ]; then
 else
     found $tpm
 fi
+
+# Manual Installs
+check_post fzf
+check_post rg
+check_post node

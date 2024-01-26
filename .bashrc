@@ -102,7 +102,8 @@ function whoowns {
     git log --pretty=format:"%an" --after="2 years" ${@} | sort | uniq -c | sort -r                                                                                                                                                                                              
 }
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f "$HOME/.fzf.bash" ] && source "$HOME/.fzf.bash"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 # Load any extensions in ~/.bashrc.d
 mkdir -p ~/.bashrc.d
@@ -115,4 +116,3 @@ if [ -n "$(ls ~/.bashrc.d)" ]; then
   done
 fi
 
-. "$HOME/.cargo/env"

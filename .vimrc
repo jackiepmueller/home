@@ -58,9 +58,9 @@ set wildmenu
 
 """" Syntax
 syntax on                      " enable syntax highlighting
-set foldmethod=syntax          " syntax-based code folding, this was the cause of insane input lag
-set foldnestmax=1              " only fold one level
-set nofoldenable               " disable folding (enable in USERS section)
+"set foldmethod=syntax          " syntax-based code folding, this was the cause of insane input lag
+"set foldnestmax=1              " only fold one level
+set foldmethod=marker foldmarker=//\ IMPL,eof
 set cinoptions=:0,l1,t0,g0,N-s " case labels at column 0,
                                " align line after case label with label,
                                " return type declaration at column 0,
@@ -84,7 +84,7 @@ nmap <silent> tw :set wrap!<cr>
 nmap <silent> tn :set number!<cr>
 " YouCompleteMe GoTo
 nmap <F2> :YcmCompleter GoToImprecise<cr>
-nmap <F3> :YcmCompleter GoTo<cr>
+nmap <F3> :call CocActionAsync('jumpDefinition')<cr>
 nmap <F4> :YcmCompleter GoToDefinition<cr>
 nmap <F5> :YcmForceCompileAndDiagnostics<cr>
 " YouCompleteMe FixIt
@@ -127,6 +127,7 @@ set statusline +=%2*%m%*        "modified flag
 set statusline +=%1*%=%5l%*     "current line
 set statusline +=%2*/%L%*       "total lines
 set statusline +=%1*%4v\ %*     "virtual column number
+set statusline ^=%1{coc#status()}
 
 colorscheme mevening  " the color scheme
 

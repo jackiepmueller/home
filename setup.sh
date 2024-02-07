@@ -4,6 +4,7 @@ THIS_DIR=home
 
 GREEN="\033[0;32m"
 YELLOW="\033[0;33m"
+LIGHTBLUE="\033[0;94m"
 RED="\033[0;31m"
 PURPLE="\033[0;35m"
 NC="\033[0m"
@@ -23,11 +24,11 @@ found() {
 }
 
 created() {
-    echo -e "${YELLOW}created${NC} [$1]"
+    echo -e "${LIGHTBLUE}created${NC} [$1]"
 }
 
 fetched() {
-    echo -e "${YELLOW}fetched${NC} [$1]"
+    echo -e "${LIGHTBLUE}fetched${NC} [$1]"
 }
 
 check_dep() {
@@ -97,17 +98,16 @@ make_sym .inputrc
 make_sym .psqlrc
 make_sym .gdbinit
 
-# Add keyboard remappings for chromebook
-[ "$HOSTNAME" = "gal" ] && make_sym .xkb
-
 make_dir .bashrc.d
 
 # Debian/Ubuntu specific stuff
 [ -f "/etc/debian_version" ] && make_sym deb.bash .bashrc.d
 
 # Setup nvim
+check_dep clangd
 make_dir .config/nvim
 make_sym init.vim .config/nvim
+make_sym coc-settings.json .config/nvim
 
 # Create swap files dir
 make_dir .vim/swapfiles

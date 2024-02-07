@@ -1,0 +1,9 @@
+{
+    "suggest.noselect": true,
+
+    "workspace.ignoredFolders": [
+        "$HOME",
+        "$HOME/.cargo/**",
+        "$HOME/.rustup/**"
+    ]
+}

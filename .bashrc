@@ -91,6 +91,8 @@ function whoowns {
 
 [ -f "$HOME/.fzf.bash" ] && source "$HOME/.fzf.bash"
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+[ -d "$HOME/bin" ] && export PATH="$HOME/bin:$PATH"
+[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 
 # Load any extensions in ~/.bashrc.d
 mkdir -p ~/.bashrc.d

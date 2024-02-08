@@ -1,6 +1,16 @@
 {
     "suggest.noselect": true,
 
+    "diagnostic.autoRefresh": true,
+    "diagnostic.infoSign": "i",
+    "languageserver": {
+        "rust": {
+            "command": "rust-analyzer",
+            "filetypes": ["rust"],
+            "rootPatterns": ["Cargo.toml"]
+        }
+    },
+
     "workspace.ignoredFolders": [
         "$HOME",
         "$HOME/.cargo/**",

@@ -27,6 +27,10 @@ created() {
     echo -e "${LIGHTBLUE}created${NC} [$1]"
 }
 
+copied() {
+    echo -e "${LIGHTBLUE}copied${NC} [$1]"
+}
+
 fetched() {
     echo -e "${LIGHTBLUE}fetched${NC} [$1]"
 }
@@ -69,6 +73,24 @@ make_sym() {
         created "$to -> $from"
     else
         found "$to -> $from"
+    fi
+}
+
+# copy file in ~/THIS_DIR to ~
+#
+# arg 1: file in ~/THIS_DIR
+# arg 2: optional name for file in ~
+make_copy() {
+    from=~/$THIS_DIR/$1
+    to=~/$1
+
+    [ $# -ge 2 ] && to=~/$2
+
+    if [ ! -e $to ]; then
+        cp $from $to
+        copied "$from to $to"
+    else
+        found "$to"
     fi
 }
 
@@ -123,6 +145,8 @@ make_sym c.vim .vim/syntax
 # Setup non-plug plugins
 make_dir .vim/plugin
 make_sym a.vim .vim/plugin
+
+make_copy .gitconfig
 
 # Vim Plug
 plug=~/.vim/autoload/plug.vim

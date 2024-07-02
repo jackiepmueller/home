@@ -43,6 +43,7 @@ alias gl='git log'
 alias frb='git fetch && git rebase origin/master'
 alias ll='ls -lah'
 alias rl='readlink -f'
+alias egs="nvim `git status | grep both | awk '{print $3}'`"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like

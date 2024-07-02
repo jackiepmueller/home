@@ -11,6 +11,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/goyo.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/CSApprox'
 Plug 'vim-scripts/star-search'
@@ -21,12 +22,16 @@ call plug#end()
 let g:alternateRelativeFiles = 1      " Files opened with :A will open relative to cwd
 let g:alternateNoDefaultAlternate = 1 " Don't create new files
 
-""" coc.nvim
+"""" coc.nvim
 "let g:coc_disable_startup_warning = 1
 let g:coc_default_semantic_highlight_groups = 0
 
 command! -nargs=0 EN :call CocAction('diagnosticNext')
 command! -nargs=0 EP :call CocAction('diagnosticPrevious')
+
+"""" goyo.vim
+let g:goyo_width = 120
+let g:goyo_height = 95
 
 """" General
 set autoindent smartindent                 " smarter indent behavior
@@ -51,6 +56,7 @@ set scrolloff=5                            " show more context around cursor
 set cursorline                             " highlight cursor line number
 set inccommand=                            " don't do incremental substitution
 set mouse=                                 " disable right click menu
+set list                                   " show unwanted white space
 
 """" normal tab completion
 set wildmode=longest,list,full

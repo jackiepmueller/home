@@ -54,18 +54,14 @@ check_post() {
 # create a symlink from a file in ~/$THIS_DIR to ~
 #
 # arg 1: file in ~/$THIS_DIR
-# arg 2: optional "to" path relative to ~ 
-# arg 3: optional "from" path relative to ~/$THIS_DIR
+# arg 2: optional if destination name or path should differ
 make_sym() {
     from=~/$THIS_DIR/$1
     to=~/$1
 
-    [ $# -ge 3 ] && from=~/$THIS_DIR/$3/$1
+    [ $# -ge 2 ] && to=~/$2
 
     [ -e $from ] || error "making symlink $to -> $from, $from doesn't exist"
-
-    [ $# -ge 2 ] && to=~/$2/$1
-
     [ -e $to ] && [ ! -h $to ] && error "making symlink $to -> $from, $to exists and is not a symlink"
 
     if [ ! -e $to ]; then
@@ -123,28 +119,32 @@ make_sym .gdbinit
 make_dir .bashrc.d
 
 # Debian/Ubuntu specific stuff
-[ -f "/etc/debian_version" ] && make_sym deb.bash .bashrc.d
+[ -f "/etc/debian_version" ] && make_sym deb.bash .bashrc.d/deb.bash
 
 # Setup nvim
 check_dep clangd
 make_dir .config/nvim
-make_sym init.vim .config/nvim
-make_sym coc-settings.json .config/nvim
+make_sym init.vim .config/nvim/init.vim
+make_sym coc-settings.json .config/nvim/coc-settings.json
 
 # Create swap files dir
 make_dir .vim/swapfiles
 
 # Setup vim colorscheme
 make_dir .vim/colors
-make_sym mevening.vim .vim/colors
+make_sym mevening.vim .vim/colors/mevening.vim
 
 # Setup vim syntax
 make_dir .vim/syntax
-make_sym c.vim .vim/syntax
+make_sym c.vim .vim/syntax/c.vim
 
 # Setup non-plug plugins
 make_dir .vim/plugin
-make_sym a.vim .vim/plugin
+make_sym a.vim .vim/plugin/a.vim
+
+# Setup ssh config
+make_dir .ssh
+make_sym ssh-config .ssh/config
 
 make_copy .gitconfig
 
@@ -160,7 +160,7 @@ if [ ! -e $plug ]; then
 
     make_dir .vim/autoload
 
-    make_sym plug.vim .vim/autoload vim-plug
+    make_sym vim-plug/plug.vim .vim/autoload/plug.vim
 else
     found $plug
 fi

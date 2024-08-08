@@ -122,7 +122,6 @@ make_dir .bashrc.d
 [ -f "/etc/debian_version" ] && make_sym deb.bash .bashrc.d/deb.bash
 
 # Setup nvim
-check_dep clangd
 make_dir .config/nvim
 make_sym init.vim .config/nvim/init.vim
 make_sym coc-settings.json .config/nvim/coc-settings.json
@@ -131,8 +130,8 @@ make_sym coc-settings.json .config/nvim/coc-settings.json
 make_dir .vim/swapfiles
 
 # Setup vim colorscheme
-make_dir .vim/colors
-make_sym mevening.vim .vim/colors/mevening.vim
+make_dir .config/nvim/colors
+make_sym mevening.vim .config/nvim/colors/mevening.vim
 
 # Setup vim syntax
 make_dir .vim/syntax
@@ -149,7 +148,7 @@ make_sym ssh-config .ssh/config
 make_copy .gitconfig
 
 # Vim Plug
-plug=~/.vim/autoload/plug.vim
+plug=~/.local/share/nvim/site/autoload/plug.vim
 if [ ! -e $plug ]; then
     if [ ! -d vim-plug ]; then
         git clone https://github.com/junegunn/vim-plug.git ~/$THIS_DIR/vim-plug || error "cloning vim-plug"
@@ -158,12 +157,14 @@ if [ ! -e $plug ]; then
         found "vim-plug"
     fi
 
-    make_dir .vim/autoload
+    make_dir .local/share/nvim/site/autoload
 
-    make_sym vim-plug/plug.vim .vim/autoload/plug.vim
+    make_sym vim-plug/plug.vim .local/share/nvim/site/autoload/plug.vim
 else
     found $plug
 fi
+
+check_dep clangd
 
 # TPM
 tpm=~/.tmux/plugins/tpm

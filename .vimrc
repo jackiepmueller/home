@@ -67,7 +67,7 @@ syntax on                      " enable syntax highlighting
 "set foldmethod=syntax          " syntax-based code folding, this was the cause of insane input lag
 "set foldnestmax=1              " only fold one level
 set foldmethod=marker foldmarker=//\ IMPL,eof
-set cinoptions=:0,l1,t0,g0,N-s " case labels at column 0,
+set cinoptions=:4,l1,t0,g0,N-s " case labels at column 4,
                                " align line after case label with label,
                                " return type declaration at column 0,
                                " c++ scope declarations at column 0

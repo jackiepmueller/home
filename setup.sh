@@ -123,6 +123,7 @@ make_dir .bashrc.d
 
 # Setup nvim
 make_dir .config/nvim
+make_dir .config/nvim/plugin
 make_sym init.vim .config/nvim/init.vim
 make_sym coc-settings.json .config/nvim/coc-settings.json
 
@@ -138,8 +139,7 @@ make_dir .vim/syntax
 make_sym c.vim .vim/syntax/c.vim
 
 # Setup non-plug plugins
-make_dir .vim/plugin
-make_sym a.vim .vim/plugin/a.vim
+make_sym a.vim .config/nvim/plugin/a.vim
 
 # Setup ssh config
 make_dir .ssh

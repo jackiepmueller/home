@@ -18,6 +18,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/CSApprox'
 Plug 'vim-scripts/star-search'
+Plug 'okuuva/auto-save.nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " do CocInstall coc-clangd afterwards
 call plug#end()
 
@@ -203,8 +204,14 @@ autocmd VimEnter * colorscheme mevening
 autocmd VimEnter * CSApprox
 autocmd VimEnter * pwd
 
-"" Auto save buffers
-autocmd TextChanged,TextChangedI * silent write
+"" auto-save.nvim
+lua << EOF
+    require("auto-save").setup {
+        execution_message = {
+            enabled = false,
+        },
+    }
+EOF
 
 """" Snippets
 function! _snippets()

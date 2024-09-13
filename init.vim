@@ -16,10 +16,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/goyo.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'vim-scripts/CSApprox'
 Plug 'vim-scripts/star-search'
 Plug 'okuuva/auto-save.nvim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " do CocInstall coc-clangd afterwards
+"Plug 'neoclide/coc.nvim', {'branch': 'release'} " do CocInstall coc-clangd afterwards
 call plug#end()
 
 """" a.vim
@@ -28,7 +27,7 @@ let g:alternateNoDefaultAlternate = 1 " Don't create new files
 
 """" coc.nvim
 "let g:coc_disable_startup_warning = 1
-let g:coc_default_semantic_highlight_groups = 0
+"let g:coc_default_semantic_highlight_groups = 0
 
 command! -nargs=0 EN :call CocAction('diagnosticNext')
 command! -nargs=0 EP :call CocAction('diagnosticPrevious')
@@ -137,8 +136,9 @@ set statusline +=%2*%m%*        "modified flag
 set statusline +=%1*%=%5l%*     "current line
 set statusline +=%2*/%L%*       "total lines
 set statusline +=%1*%4v\ %*     "virtual column number
-set statusline ^=%1{coc#status()}
+"set statusline ^=%1{coc#status()}
 
+set termguicolors
 colorscheme mevening  " the color scheme
 
 """ Leader
@@ -201,8 +201,14 @@ call SyntaxOn('sqli', 'sql')
 call SyntaxOn('inc',  'cpp')
 
 autocmd VimEnter * colorscheme mevening
-autocmd VimEnter * CSApprox
 autocmd VimEnter * pwd
+
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunction
 
 "" auto-save.nvim
 lua << EOF

@@ -44,10 +44,11 @@ hi CursorLineNr guifg=#eea040
 hi MoreMsg      gui=bold guifg=SeaGreen
 hi NonText      gui=bold guifg=LightBlue guibg=grey30
 hi Question     gui=bold guifg=Green
-hi Search       guibg=Yellow guifg=Black
+hi Search       guibg=#eea040 guifg=Black
+hi CurSearch    guibg=NvimLightYellow guifg=Black
 hi SpecialKey   guifg=Cyan
 hi Title        gui=bold guifg=Magenta
-hi WarningMsg   guifg=#f0799f 
+hi WarningMsg   guifg=#f0799f
 hi WildMenu     guibg=Yellow guifg=Black
 hi Folded       guibg=#222222 guifg=White
 "hi FoldColumn   guibg=Grey guifg=White
@@ -56,9 +57,14 @@ hi DiffChange   guibg=DarkMagenta
 hi DiffDelete   gui=bold guifg=Blue guibg=DarkCyan
 hi Pmenu        guibg=grey30
 hi SignColumn   guibg=grey20
+hi PreProc      guifg=Magenta
+hi Comment      guifg=#80a0ff
 
 " Clear this to get cursorline enabled but only highlight the line number
 hi clear CursorLine
+
+" Links hi! link <the one that doesn't exist> <the one that does>
+hi! link String Constant
 
 " Groups for syntax highlighting
 hi Constant     guifg=#ffa0a0

@@ -70,6 +70,7 @@ hi! link String Constant
 hi Constant     guifg=#ffa0a0
 hi Special      guifg=Orange
 hi Statement    guifg=#ffff60 gui=bold
+hi Operator     guifg=#ffff60 gui=bold
 hi Type         guifg=#60ff60 gui=bold
 hi Ignore       guifg=grey20
 hi clear Identifier

@@ -122,24 +122,11 @@ make_dir .bashrc.d
 [ -f "/etc/debian_version" ] && make_sym deb.bash .bashrc.d/deb.bash
 
 # Setup nvim
-make_dir .config/nvim
-make_dir .config/nvim/plugin
-make_sym init.vim .config/nvim/init.vim
-make_sym coc-settings.json .config/nvim/coc-settings.json
+make_dir .config
+make_sym nvim .config/nvim
 
 # Create swap files dir
 make_dir .vim/swapfiles
-
-# Setup vim colorscheme
-make_dir .config/nvim/colors
-make_sym mevening.vim .config/nvim/colors/mevening.vim
-
-# Setup vim syntax
-make_dir .vim/syntax
-make_sym c.vim .vim/syntax/c.vim
-
-# Setup non-plug plugins
-make_sym a.vim .config/nvim/plugin/a.vim
 
 # Setup ssh config
 make_dir .ssh
@@ -158,8 +145,7 @@ if [ ! -e $plug ]; then
     fi
 
     make_dir .local/share/nvim/site/autoload
-
-    make_sym vim-plug/plug.vim .local/share/nvim/site/autoload/plug.vim
+    make_copy vim-plug/plug.vim .local/share/nvim/site/autoload/plug.vim
 else
     found $plug
 fi

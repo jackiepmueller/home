@@ -210,15 +210,6 @@ function! SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunction
 
-"" auto-save.nvim
-lua << EOF
-    require("auto-save").setup {
-        execution_message = {
-            enabled = false,
-        },
-    }
-EOF
-
 """" Snippets
 function! _snippets()
 

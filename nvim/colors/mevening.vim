@@ -33,6 +33,7 @@ hi ModeMsg      gui=bold
 hi StatusLine   guibg=#222222
 hi StatusLineNC guibg=#222222
 hi VertSplit    guibg=#222222 guifg=#222222
+hi WinSeparator guibg=#222222 guifg=#222222
 hi Visual       guibg=grey60
 hi VisualNOS    gui=underline,bold
 hi DiffText     gui=bold guibg=#dd3333
@@ -45,7 +46,7 @@ hi MoreMsg      gui=bold guifg=SeaGreen
 hi NonText      gui=bold guifg=LightBlue guibg=grey30
 hi Question     gui=bold guifg=Green
 hi Search       guibg=#eea040 guifg=Black
-hi CurSearch    guibg=NvimLightYellow guifg=Black
+hi CurSearch    guibg=Yellow guifg=Black
 hi SpecialKey   guifg=Cyan
 hi Title        gui=bold guifg=Magenta
 hi WarningMsg   guifg=#f0799f
@@ -57,7 +58,7 @@ hi DiffChange   guibg=DarkMagenta
 hi DiffDelete   gui=bold guifg=Blue guibg=DarkCyan
 hi Pmenu        guibg=grey30
 hi SignColumn   guibg=grey20
-hi PreProc      guifg=Magenta
+hi PreProc      guifg=Magenta gui=bold
 hi Comment      guifg=#80a0ff
 
 " Clear this to get cursorline enabled but only highlight the line number
